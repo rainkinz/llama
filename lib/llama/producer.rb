@@ -92,8 +92,9 @@ module Llama
 
       def produce(message)
         rss = SimpleRSS.parse open(@url)
+        
         return Llama::Message::DefaultMessage.new(
-                  :headers => {:title => rss.title, :link => rss.link}, 
+                  :headers => {:title => rss.channel.title, :link => rss.channel.link}, 
                   :body => rss.items) #body is splittable
       end
     end
